@@ -1,0 +1,127 @@
+{% extends "base-admin.html" %}
+{% load static %}
+{% block content %}
+<div class="page-heading">
+    <h3>All Books</h3>
+</div>
+
+<div class="page-content">
+    <section class="row">
+        <div class="col-11">
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Data Books</h4>
+                        <hr>
+                        <button class="btn btn-primary rounded-pill" data-bs-toggle="modal"
+                            data-bs-target="#inlineForm">Add Book</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+                            <table class="table table-striped table-bordered table-hover text-center" id="table1">
+                                <thead class="table-info">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Cover</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for b in book %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td><img src="{{b.cover.url}}" alt="" srcset=""></td>
+                                        <td>{{b.title}}</td>
+                                        <td>{{b.description}}</td>
+                                        <td>
+                                            <a href="" class="btn btn-success">Edit</a>
+                                            
+                                            <a href="{% url 'delete' b.id %}" class="btn btn-danger">Hapus</a>                                            
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- FOR MODAl -->
+<div class="modal fade text-left" id="inlineForm" tabindex="-1" aria-labelledby="myModalLabel33" style="display: none;"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document" id="myModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel33">Add Book Form </h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-x">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                            <div class="row">
+                                <div class="form-group">
+                                    <h5>Book title :</h5>
+                                    {{form.title}}
+                                    <br>
+                                    <h5>Book Author Name :</h5>
+                                    {{form.author}}
+                                    <br>
+                                    <h5>Select Category :</h5>
+                                    {{form.category}}
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="form-group">
+
+                                <h5>Book file :</h5>
+                                {{form.file}}
+                                <br>
+                                <h5>Book cover :</h5>
+                                {{form.cover}}
+                                <br>
+                                <h5>Description :</h5>
+                                {{form.description}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Close</span>
+                    </button>
+                    <button type="submit" class="btn btn-primary ml-1">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Add</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END MODAL -->
+<!-- <script>
+    $('#inlineForm').on('shown.bs.modal', function () {
+        $('#myModal').trigger('focus')
+    })
+</script> -->
+{% endblock content %}

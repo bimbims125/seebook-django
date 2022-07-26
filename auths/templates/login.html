@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main data-barba="container" data-barba-namespace="login">
+
+    <!-- Main section register start -->
+    <section id="register" class="pt-20 pb-32 lg:pb-30 px-4">
+        <div class="container mx-auto flex flex-col lg:flex-row gap-12 lg:gap-0 bg-white items-center rounded-2xl px-4 lg:px-14 py-14 lg:py-24 shadow-md justify-center">
+            <div class="w-full">
+                <img src="{% static 'dist/img/casual-life-3d-young-couple-sitting-on-the-floor-and-reading-books.png' %}" alt="" class="w-[600px]">
+            </div>
+            <div class="w-full">
+                <h5 class="font-bold text-xl text-center text-darken mb-7">Log in Account</h5>
+                <form action="">
+                    <div class="form-group mt-7">
+                        <label for="email" class="text-dark">Email</label><br>
+                        <input type="email" name="email" id="email" class="bg-[#B0BAC3] bg-opacity-[40%] p-4 rounded-xl w-full" placeholder="Enter your Email here">
+                    </div>
+                    <div class="form-group mt-7">
+                        <label for="password" class="text-dark">Password</label><br>
+                        <input type="password" name="password" id="password" class="bg-[#B0BAC3] bg-opacity-[40%] p-4 rounded-xl w-full" placeholder="Enter your Password here">
+                    </div>
+                    <div class="flex justify-center mt-7">
+                        <button type="submit" class="py-3 px-5 bg-primary text-darken text-lg rounded-lg">Create Account</button>
+                    </div>
+                </form>
+                <p class="text-sm text-darken text-center mt-4">Have not account yet? <a href="#" class="text-primary">Register</a></p>
+            </div>
+        </div>
+    </section>
+    <!-- Main section register end -->
+
+    </main>
+{% endblock content %}
